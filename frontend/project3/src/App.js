@@ -12,6 +12,9 @@ const [newBrand, setNewBrand] = useState('')
 const [newSize, setNewSize] = useState('')
 const [newColor, setNewColor] = useState('')
 const [newImage, setNewImage] = useState('')
+const [formDisplay, setFormDisplay] = useState(false)
+const [showModal, setShowModal] = useState(false)
+
 
 
 // Form Handlers
@@ -38,7 +41,7 @@ const handleNewImageChange = (event) => {
 
 const handleNewItemFormSubmit = (event) => {
   event.preventDefault();
-  axios.post('http://localhost:3000/wardrobe',
+  axios.post('http://localhost:3001/wardrobe',
     {
       type:newType,
       brand:newBrand,
@@ -46,12 +49,17 @@ const handleNewItemFormSubmit = (event) => {
       color:newColor,
       isClean:true
     }
-  ).then(()=>{
-    axios.get('http://localhost:3000/wardrobe').then((response) => {
-            setClothes(response.data)
-        })
-    })
-    event.target.reset()
+  )
+}
+
+// Display Functions
+//____________________
+const showFormDisplay = () => {
+  setFormDisplay(true)
+}
+
+const hideFormDisplay = () => {
+  setFormDisplay(false)
 }
 
 
@@ -61,29 +69,41 @@ useEffect(() => {
   axios.get('https://theaudiodb.com/api/v1/json/2/album.php?i=120871').then((response => {
     setClothes(response.data.album)}))
 }, [])
-  
+
+
+// Browser Display
+//________________
   return (
     <main>
     <header>
       <h1>Wardrobe Manager</h1>
     </header>
-      <div>
+      <div className='buttons-div'>
         <button>View Collection</button>
         <button>Suggest Outfit</button>
-        <button>Add Item</button>
+        <button onClick={showFormDisplay}>Add Item</button>
       </div>
-      <div>
-      <h3>Add an Item to Your Wardrobe:</h3>
-        <form onSubmit={handleNewItemFormSubmit}>
-          <input type="text" placeholder='Type' onChange={handleNewTypeChange}/><br/>
-          <input type="text" placeholder='Brand' onChange={handleNewBrandChange}/><br/>
-          <input type="text" placeholder='Size' onChange={handleNewSizeChange}/><br/>
-          <input type="text" placeholder='Color' onChange={handleNewColorChange}/><br/>
-          <input type="text" placeholder='Image' onChange={handleNewImageChange}/><br/>
-          {/* Reserved for Adoption: <input type="checkbox" onChange={handleNewReservedForAdoptionChange}/><br/> */}
-          <input className='sort-button' type="submit" value="Add Pet"/>
-        </form>
+
+      {/* Add Item Form */}
+      {formDisplay === true ? 
+      <div className='form-modal'>
+        <div className='form-modal-box'>
+          <h3>Add an Item to Your Wardrobe:</h3>
+            <form onSubmit={handleNewItemFormSubmit}>
+              <input type="text" placeholder='Type' onChange={handleNewTypeChange}/><br/>
+              <input type="text" placeholder='Brand' onChange={handleNewBrandChange}/><br/>
+              <input type="text" placeholder='Size' onChange={handleNewSizeChange}/><br/>
+              <input type="text" placeholder='Color' onChange={handleNewColorChange}/><br/>
+              <input type="text" placeholder='Image' onChange={handleNewImageChange}/><br/>
+              {/* Clean: <input type="checkbox" onChange={handleNewReservedForLaundryChange}/><br/> */}
+              <input className='sort-button' type="submit" value="Add Item"/>
+              <button onClick={hideFormDisplay}>Close Form</button>
+            </form>
+          </div>
       </div>
+      : null
+      }
+
       <div className='container'>
         {clothes.map((clothesParam) => {
           return (
@@ -92,7 +112,7 @@ useEffect(() => {
               <p><span>Type: </span>{clothesParam.strAlbum}</p>
               <p><span>Brand: </span>{clothesParam.strGenre}</p>
               <p><span>Color: </span>{clothesParam.strLabel}</p>
-              <p><span>Size: </span>{clothesParam.strIntYearReleased}</p>
+              <p><span>Size: </span>{clothesParam.intYearReleased}</p>
             </div>
           )
         })}
