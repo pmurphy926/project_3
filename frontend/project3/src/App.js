@@ -82,7 +82,6 @@ const hideCollection = () => {
 
 const showInfo = () => {
   setInfoDisplay(true)
-  // hideCollection()
 }
 
 const hideInfo = () => {
@@ -164,14 +163,16 @@ useEffect(() => {
             <div className='item-card'>
               <img onClick={showInfo} src={clothesParam.imageURL}></img><br />
               {infoDisplay === true ?
-                  <div className='item-info'>
-                  <p><span>Type: </span>{clothesParam.type}</p>
-                  <p><span>Brand: </span>{clothesParam.brand}</p>
-                  <p><span>Color: </span>{clothesParam.color}</p>
-                  <p><span>Size: </span>{clothesParam.size}</p><br />
-                  <button>Edit Info</button>
-                  <button onClick={hideInfo}>Hide Info</button>
-                  </div>: null}
+                <div className='form-modal'>
+                  <div className='form-modal-box'>
+                    <p><span>Type: </span>{clothesParam.type}</p>
+                    <p><span>Brand: </span>{clothesParam.brand}</p>
+                    <p><span>Color: </span>{clothesParam.color}</p>
+                    <p><span>Size: </span>{clothesParam.size}</p><br />
+                    <button>Edit Info</button>
+                    <button onClick={hideInfo}>Hide Info</button>
+                  </div>
+                </div>: null}
             </div>
           )
         })}
