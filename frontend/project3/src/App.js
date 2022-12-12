@@ -4,8 +4,9 @@ import './App.css';
 
 const App = () => {
 
-// States
-//________________
+//=================================================
+//                   STATES
+//=================================================
 const [clothes, setClothes] = useState([])
 const [newType, setNewType] = useState('')
 const [newBrand, setNewBrand] = useState('')
@@ -16,11 +17,13 @@ const [formDisplay, setFormDisplay] = useState(false)
 const [showModal, setShowModal] = useState(false)
 const [collectionDisplay, setCollectionDisplay] = useState(false)
 const [selectValue, setSelectValue] = useState('')
+const [filter, setFilter] = useState([])
+const [infoDisplay, setInfoDisplay] = useState(false)
 
 
-
-// Form Handlers
-//________________
+//=================================================
+//                FORM HANDLERS
+//=================================================
 const handleNewTypeChange = (event) => {
   setNewType(event.target.value);
 }
@@ -54,12 +57,13 @@ const handleNewItemFormSubmit = (event) => {
   )
 }
 
-const handleSelectValue = (event) => {
-  setSelectValue(event.target.value)
-}
+// const handleSelectValue = (event) => {
+//   setSelectValue(event.target.value)
+// }
 
-// Display Functions
-//____________________
+//=================================================
+//               DISPLAY FUNCTIONS
+//=================================================
 const showFormDisplay = () => {
   setFormDisplay(true)
 }
@@ -72,28 +76,37 @@ const showCollection = () => {
   setCollectionDisplay(true)
 }
 
-// Sorting Collection 
-//____________________
-// const filterClothes = (setFilter) =>{
-//   axios.get(`http://localhost:3000/pets/${setFilter}`)
-//   .then((res)=>{
-//     setClothes(res.data)
-//     console.log(res.data);
-//   })
-// }
+const showInfo = () => {
+  setInfoDisplay(true)
+}
 
+const hideInfo = () => {
+  setInfoDisplay(false)
+}
 
+//=================================================
+//                  SORTING FUNCTIONS
+//=================================================
+const filterClothes = (setFilter) =>{
+  axios.get(`http://localhost:3000/${setFilter}`)
+  .then((res)=>{
+    setClothes(res.data)
+    console.log(res.data);
+  })
+}
 
-//Display Data
-//________________
+//=================================================
+//                   USE EFFECT
+//=================================================
 useEffect(() => {
   axios.get('https://theaudiodb.com/api/v1/json/2/album.php?i=120871').then((response => {
     setClothes(response.data.album)}))
 }, [])
 
 
-// Browser Display
-//________________
+//=================================================
+//               BROWSER CONTENT
+//=================================================
   return (
     <main>
     <header>
@@ -128,13 +141,13 @@ useEffect(() => {
       {collectionDisplay === true ? 
         <div className='collection-heading'>
           <h2>Your Collection</h2>
-          <select onChange={handleSelectValue}>
+          <select>
             <option className='sort-dropdown'>
               Choose Clothing Type
             </option>
             {clothes.map((clothesParam) => {
               return (
-                <option>{clothesParam.strAlbum}</option>
+                <option onClick={() => {filterClothes (clothes)}}>{clothesParam.strAlbum}</option>
                 )
               })}
           </select>
@@ -144,11 +157,16 @@ useEffect(() => {
         {clothes.map((clothesParam) => {
           return (
             <div className='item-card'>
-              <img src={clothesParam.strAlbumThumb}></img>
+              <img onClick={showInfo} src={clothesParam.strAlbumThumb}></img><br />
+              {infoDisplay === true ?
+              <div>
               <p><span>Type: </span>{clothesParam.strAlbum}</p>
               <p><span>Brand: </span>{clothesParam.strGenre}</p>
               <p><span>Color: </span>{clothesParam.strLabel}</p>
-              <p><span>Size: </span>{clothesParam.intYearReleased}</p>
+              <p><span>Size: </span>{clothesParam.intYearReleased}</p><br />
+              <button>Edit Info</button>
+              <button onClick={hideInfo}>Hide Info</button>
+              </div>: null}
             </div>
           )
         })}

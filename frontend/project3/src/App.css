@@ -10,7 +10,8 @@ main {
 }
 
 img {
-  width: 80%
+  width: 80%;
+  cursor: pointer;
 }
 
 .buttons-div {
