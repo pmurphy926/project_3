@@ -19,7 +19,7 @@ const [showModal, setShowModal] = useState(false)
 const [collectionDisplay, setCollectionDisplay] = useState(false)
 const [selectValue, setSelectValue] = useState('')
 const [filter, setFilter] = useState([])
-const [infoDisplay, setInfoDisplay] = useState(false)
+// const [infoDisplay, setInfoDisplay] = useState(false)
 
 
 //=================================================
@@ -87,13 +87,13 @@ const hideCollection = () => {
   setCollectionDisplay(false)
 }
 
-const showInfo = () => {
-  setInfoDisplay(true)
-}
+// const showInfo = () => {
+//   setInfoDisplay(true)
+// }
 
-const hideInfo = () => {
-  setInfoDisplay(false)
-}
+// const hideInfo = () => {
+//   setInfoDisplay(false)
+// }
 
 //=================================================
 //                  SORTING FUNCTIONS
@@ -149,7 +149,7 @@ useEffect(() => {
       }
 
       {/* VIEW ENTIRE COLLECTION */}
-      {collectionDisplay === true ? 
+      {collectionDisplay ? 
         <div className='collection-heading'>
           <h2>Your Collection</h2>
           <select>
@@ -162,19 +162,15 @@ useEffect(() => {
                 )
               })}
           </select>
-        </div> : null}
-        
-      {collectionDisplay === true ?
-      <div className='container'>
+          <div className='container'>
         {clothes.map((clothesParam) => {
           return (
-            <div className='item-card'>
-              <img onClick={showInfo} src={clothesParam.imageURL}></img><br />
-              {infoDisplay === true ? <InfoModal hideInfo={hideInfo} clothesParam={clothesParam}/> : null}
-            </div>
+            <InfoModal clothesParam={clothesParam} />
           )
         })}
-      </div> : null }
+      </div> 
+        </div> : null}
+        
 
       {/* SUGGESTED OUTFIT */}
       <div>

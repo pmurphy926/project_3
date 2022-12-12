@@ -1,10 +1,24 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 const InfoModal = (props) => {
-    return (
-        <div className='clothes-modal'>
+  const [infoDisplay, setInfoDisplay] = useState(false)
+  
+  const showInfo = () => {
+    setInfoDisplay(true)
+  }
+
+  const hideInfo = () => {
+    setInfoDisplay(false)
+  }
+
+  return (
+    <div className='item-card'>
+      <img onClick={showInfo} src={props.clothesParam.imageURL}></img><br />
+      
+      {infoDisplay ? 
+      <div className='clothes-modal'>
         <div className='clothes-modal-box'>
-          <button className='close-modal' onClick={props.hideInfo}>Close</button><br />
+          <button className='close-modal' onClick={hideInfo}>Close</button><br />
           <img className='clothes-modal-img' src={props.clothesParam.imageURL} alt="" />
           <p><span>Type: </span>{props.clothesParam.type}</p>
           <p><span>Brand: </span>{props.clothesParam.brand}</p>
@@ -12,8 +26,10 @@ const InfoModal = (props) => {
           <p><span>Size: </span>{props.clothesParam.size}</p>
           <button>Edit Info</button>
         </div>
-      </div>
-    )
+      </div> :null}
+      
+    </div>
+  )
 }
 
 export default InfoModal
