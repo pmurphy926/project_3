@@ -76,8 +76,13 @@ const showCollection = () => {
   setCollectionDisplay(true)
 }
 
+const hideCollection = () => {
+  setCollectionDisplay(false)
+}
+
 const showInfo = () => {
   setInfoDisplay(true)
+  // hideCollection()
 }
 
 const hideInfo = () => {
@@ -99,8 +104,8 @@ const filterClothes = (setFilter) =>{
 //                   USE EFFECT
 //=================================================
 useEffect(() => {
-  axios.get('https://theaudiodb.com/api/v1/json/2/album.php?i=120871').then((response => {
-    setClothes(response.data.album)}))
+  axios.get('https://mighty-cliffs-82907.herokuapp.com/').then((response => {
+    setClothes(response.data)}))
 }, [])
 
 
@@ -118,7 +123,7 @@ useEffect(() => {
         <button onClick={showFormDisplay}>Add Item</button>
       </div>
 
-      {/* Add Item Form */}
+      {/* ADD ITEM FORM */}
       {formDisplay === true ? 
       <div className='form-modal'>
         <div className='form-modal-box'>
@@ -137,7 +142,7 @@ useEffect(() => {
       </div> : null
       }
 
-      {/* View Collection */}
+      {/* VIEW ENTIRE COLLECTION */}
       {collectionDisplay === true ? 
         <div className='collection-heading'>
           <h2>Your Collection</h2>
@@ -147,7 +152,7 @@ useEffect(() => {
             </option>
             {clothes.map((clothesParam) => {
               return (
-                <option onClick={() => {filterClothes (clothes)}}>{clothesParam.strAlbum}</option>
+                <option onClick={() => {filterClothes (clothes)}}>{clothesParam.type}</option>
                 )
               })}
           </select>
@@ -157,20 +162,38 @@ useEffect(() => {
         {clothes.map((clothesParam) => {
           return (
             <div className='item-card'>
-              <img onClick={showInfo} src={clothesParam.strAlbumThumb}></img><br />
+              <img onClick={showInfo} src={clothesParam.imageURL}></img><br />
               {infoDisplay === true ?
-              <div>
-              <p><span>Type: </span>{clothesParam.strAlbum}</p>
-              <p><span>Brand: </span>{clothesParam.strGenre}</p>
-              <p><span>Color: </span>{clothesParam.strLabel}</p>
-              <p><span>Size: </span>{clothesParam.intYearReleased}</p><br />
-              <button>Edit Info</button>
-              <button onClick={hideInfo}>Hide Info</button>
-              </div>: null}
+                  <div className='item-info'>
+                  <p><span>Type: </span>{clothesParam.type}</p>
+                  <p><span>Brand: </span>{clothesParam.brand}</p>
+                  <p><span>Color: </span>{clothesParam.color}</p>
+                  <p><span>Size: </span>{clothesParam.size}</p><br />
+                  <button>Edit Info</button>
+                  <button onClick={hideInfo}>Hide Info</button>
+                  </div>: null}
             </div>
           )
         })}
       </div> : null }
+
+      {/* SINGLE ITEM INFO */}
+      {/* <div>
+      {infoDisplay === true ?
+                  <div className='item-info'>
+                  <p><span>Type: </span>{req.body.strAlbum}</p>
+                  <p><span>Brand: </span>{clothesParam.strGenre}</p>
+                  <p><span>Color: </span>{clothesParam.strLabel}</p>
+                  <p><span>Size: </span>{clothesParam.intYearReleased}</p><br />
+                  <button>Edit Info</button>
+                  <button onClick={hideInfo}>Hide Info</button>
+                  </div>: null}
+      </div>
+       */}
+      {/* SUGGESTED OUTFIT */}
+      <div>
+        
+      </div>
     </main>
   );
 }
