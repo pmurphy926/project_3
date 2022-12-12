@@ -82,13 +82,6 @@ const showCollection = () => {
 //   })
 // }
 
-const getSortOption = () => {
-  clothes.map((clothesParam) => {
-    return (
-      <option>{clothesParam.strAlbum}</option>
-    )
-  })
-}
 
 
 //Display Data
@@ -139,7 +132,11 @@ useEffect(() => {
             <option className='sort-dropdown'>
               Choose Clothing Type
             </option>
-            {getSortOption()}
+            {clothes.map((clothesParam) => {
+              return (
+                <option>{clothesParam.strAlbum}</option>
+                )
+              })}
           </select>
         </div> : null}
       {collectionDisplay === true ?
