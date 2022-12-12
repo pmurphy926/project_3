@@ -15,6 +15,7 @@ const [newImage, setNewImage] = useState('')
 const [formDisplay, setFormDisplay] = useState(false)
 const [showModal, setShowModal] = useState(false)
 const [collectionDisplay, setCollectionDisplay] = useState(false)
+const [selectValue, setSelectValue] = useState('')
 
 
 
@@ -53,6 +54,10 @@ const handleNewItemFormSubmit = (event) => {
   )
 }
 
+const handleSelectValue = (event) => {
+  setSelectValue(event.target.value)
+}
+
 // Display Functions
 //____________________
 const showFormDisplay = () => {
@@ -65,6 +70,24 @@ const hideFormDisplay = () => {
 
 const showCollection = () => {
   setCollectionDisplay(true)
+}
+
+// Sorting Collection 
+//____________________
+// const filterClothes = (setFilter) =>{
+//   axios.get(`http://localhost:3000/pets/${setFilter}`)
+//   .then((res)=>{
+//     setClothes(res.data)
+//     console.log(res.data);
+//   })
+// }
+
+const getSortOption = () => {
+  clothes.map((clothesParam) => {
+    return (
+      <option>{clothesParam.strAlbum}</option>
+    )
+  })
 }
 
 
@@ -105,12 +128,21 @@ useEffect(() => {
               <button onClick={hideFormDisplay}>Close Form</button>
             </form>
           </div>
-      </div>
-      : null
+      </div> : null
       }
 
       {/* View Collection */}
-      { collectionDisplay === true ?
+      {collectionDisplay === true ? 
+        <div className='collection-heading'>
+          <h2>Your Collection</h2>
+          <select onChange={handleSelectValue}>
+            <option className='sort-dropdown'>
+              Choose Clothing Type
+            </option>
+            {getSortOption()}
+          </select>
+        </div> : null}
+      {collectionDisplay === true ?
       <div className='container'>
         {clothes.map((clothesParam) => {
           return (
@@ -123,8 +155,7 @@ useEffect(() => {
             </div>
           )
         })}
-      </div>
-      : null }
+      </div> : null }
     </main>
   );
 }
