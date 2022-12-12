@@ -14,6 +14,7 @@ const [newColor, setNewColor] = useState('')
 const [newImage, setNewImage] = useState('')
 const [formDisplay, setFormDisplay] = useState(false)
 const [showModal, setShowModal] = useState(false)
+const [collectionDisplay, setCollectionDisplay] = useState(false)
 
 
 
@@ -62,6 +63,10 @@ const hideFormDisplay = () => {
   setFormDisplay(false)
 }
 
+const showCollection = () => {
+  setCollectionDisplay(true)
+}
+
 
 //Display Data
 //________________
@@ -79,7 +84,7 @@ useEffect(() => {
       <h1>Wardrobe Manager</h1>
     </header>
       <div className='buttons-div'>
-        <button>View Collection</button>
+        <button onClick={showCollection}>View Collection</button>
         <button>Suggest Outfit</button>
         <button onClick={showFormDisplay}>Add Item</button>
       </div>
@@ -104,6 +109,8 @@ useEffect(() => {
       : null
       }
 
+      {/* View Collection */}
+      { collectionDisplay === true ?
       <div className='container'>
         {clothes.map((clothesParam) => {
           return (
@@ -117,6 +124,7 @@ useEffect(() => {
           )
         })}
       </div>
+      : null }
     </main>
   );
 }
