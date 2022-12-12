@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import './App.css';
+import InfoModal from './components/info-modal';
 
 const App = () => {
 
@@ -46,15 +47,21 @@ const handleNewImageChange = (event) => {
 
 const handleNewItemFormSubmit = (event) => {
   event.preventDefault();
-  axios.post('http://localhost:3001/wardrobe',
+  axios.post('https://mighty-cliffs-82907.herokuapp.com/',
     {
       type:newType,
       brand:newBrand,
       size:newSize, 
       color:newColor,
+      imageURL:newImage,
       isClean:true
     }
-  )
+  ).then(()=>{
+    axios.get('https://mighty-cliffs-82907.herokuapp.com/').then((response) => {
+            setClothes(response.data)
+        })
+    })
+    event.target.reset()
 }
 
 // const handleSelectValue = (event) => {
@@ -92,7 +99,7 @@ const hideInfo = () => {
 //                  SORTING FUNCTIONS
 //=================================================
 const filterClothes = (setFilter) =>{
-  axios.get(`http://localhost:3000/${setFilter}`)
+  axios.get(`https://mighty-cliffs-82907.herokuapp.com/'${setFilter}`)
   .then((res)=>{
     setClothes(res.data)
     console.log(res.data);
@@ -156,41 +163,19 @@ useEffect(() => {
               })}
           </select>
         </div> : null}
+        
       {collectionDisplay === true ?
       <div className='container'>
         {clothes.map((clothesParam) => {
           return (
             <div className='item-card'>
               <img onClick={showInfo} src={clothesParam.imageURL}></img><br />
-              {infoDisplay === true ?
-                <div className='form-modal'>
-                  <div className='form-modal-box'>
-                    <p><span>Type: </span>{clothesParam.type}</p>
-                    <p><span>Brand: </span>{clothesParam.brand}</p>
-                    <p><span>Color: </span>{clothesParam.color}</p>
-                    <p><span>Size: </span>{clothesParam.size}</p><br />
-                    <button>Edit Info</button>
-                    <button onClick={hideInfo}>Hide Info</button>
-                  </div>
-                </div>: null}
+              {infoDisplay === true ? <InfoModal hideInfo={hideInfo} clothesParam={clothesParam}/> : null}
             </div>
           )
         })}
       </div> : null }
 
-      {/* SINGLE ITEM INFO */}
-      {/* <div>
-      {infoDisplay === true ?
-                  <div className='item-info'>
-                  <p><span>Type: </span>{req.body.strAlbum}</p>
-                  <p><span>Brand: </span>{clothesParam.strGenre}</p>
-                  <p><span>Color: </span>{clothesParam.strLabel}</p>
-                  <p><span>Size: </span>{clothesParam.intYearReleased}</p><br />
-                  <button>Edit Info</button>
-                  <button onClick={hideInfo}>Hide Info</button>
-                  </div>: null}
-      </div>
-       */}
       {/* SUGGESTED OUTFIT */}
       <div>
         
