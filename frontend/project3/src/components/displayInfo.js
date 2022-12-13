@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Edit from './editInfo'
+import axios from 'axios'
 
 const DisplayInfo = (props) => {
 
@@ -13,7 +14,14 @@ const DisplayInfo = (props) => {
     props.setInfoDisplay(false)
   }
 
-
+const removeClothes = (clothesData) => {
+  axios.delete(`https://mighty-cliffs-82907.herokuapp.com/${clothesData._id}`)
+  .then(()=> {
+    setEdit(false)
+    props.setInfoDisplay(false)
+    props.getClothes()
+  })
+}
 
   return (
     <main>
@@ -34,6 +42,7 @@ const DisplayInfo = (props) => {
             <p><span>Color: </span>{props.clothesParam.color}</p>
             <p><span>Size: </span>{props.clothesParam.size}</p>
             <button onClick={() => [toggleEdit()]}>Edit Info</button>
+            <button onClick={() => [removeClothes(props.clothesParam)]}>Delete Clothing</button>
           </div>
         </div>}
     </main>
