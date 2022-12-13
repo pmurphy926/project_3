@@ -68,14 +68,6 @@ const handleNewItemFormSubmit = (event) => {
 //   setSelectValue(event.target.value)
 // }
 
-const handleDelete = (clothesParam) => {
-  axios.delete(`https://mighty-cliffs-82907.herokuapp.com/${clothesParam._id}`).then(() => {
-    axios.get('https://mighty-cliffs-82907.herokuapp.com/').then((response)=>{
-            setClothes(response.data)
-        })
-    })
-}
-
 //=================================================
 //               DISPLAY FUNCTIONS
 //=================================================
@@ -87,20 +79,31 @@ const hideFormDisplay = () => {
   setFormDisplay(false)
 }
 
-const showCollection = () => {
-  setCollectionDisplay(true)
+const toggleCollection = () => {
+  setCollectionDisplay(!collectionDisplay)
 }
 
-const hideCollection = () => {
-  setCollectionDisplay(false)
+// const hideCollection = () => {
+//   setCollectionDisplay(false)
+// }
+
+const getClothes = () => {
+  axios
+      .get('https://mighty-cliffs-82907.herokuapp.com/')
+      .then((response => {
+        setClothes(response.data)}))
 }
 
+const filterOptions = () => {
+  axios.get('https://mighty-cliffs-82907.herokuapp.com/filter').then((res)=>{
+    setFilter(res.data)})
+}
 
 //=================================================
 //                  SORTING FUNCTIONS
 //=================================================
 const filterClothes = (setFilter) =>{
-  axios.get(`https://mighty-cliffs-82907.herokuapp.com/${setFilter}`)
+  axios.get(`https://mighty-cliffs-82907.herokuapp.com/filter/${setFilter}`)
   .then((res)=>{
     setClothes(res.data)
     console.log(res.data);
@@ -111,8 +114,8 @@ const filterClothes = (setFilter) =>{
 //                   USE EFFECT
 //=================================================
 useEffect(() => {
-  axios.get('https://mighty-cliffs-82907.herokuapp.com/').then((response => {
-    setClothes(response.data)}))
+  getClothes()
+  filterOptions()
 }, [])
 
 
@@ -125,13 +128,13 @@ useEffect(() => {
       <h1>Wardrobe Manager</h1>
     </header>
       <div className='buttons-div'>
-        <button onClick={showCollection}>View Collection</button>
+        <button onClick={toggleCollection}>View Collection</button>
         <button>Suggest Outfit</button>
         <button onClick={showFormDisplay}>Add Item</button>
       </div>
 
       {/* ADD ITEM FORM */}
-      {formDisplay === true ? 
+      {formDisplay ? 
       <div className='form-modal'>
         <div className='form-modal-box'>
           <h3>Add an Item to Your Wardrobe:</h3>
@@ -153,23 +156,32 @@ useEffect(() => {
       {collectionDisplay ? 
         <div className='collection-heading'>
           <h2>Your Collection</h2>
-          <select>
-            <option className='sort-dropdown'>
-              Choose Clothing Type
-            </option>
-            {clothes.map((clothesParam) => {
-              return (
-                <option onClick={() => {filterClothes (clothes)}}>{clothesParam.type}</option>
-                )
-              })}
-          </select>
+
+          {filter.map((type) => {
+                return (
+                  <button onClick={() => {filterClothes(type)}}>{type}</button>
+                  )
+                })}
+
+
+
+
+          {/* <form action="https://mighty-cliffs-82907.herokuapp.com">
+            <select>
+              <option className='sort-dropdown'>
+                Choose Clothing Type
+              </option>
+              {filter.map((type) => {
+                return (
+                  <option onChange={() => {filterClothes(type)}}>{type}</option>
+                  )
+                })}
+            </select>
+          </form> */}
           <div className='container'>
         {clothes.map((clothesParam) => {
           return (
-            <React.Fragment key ={clothesParam._id}>
-            <InfoModal clothesParam={clothesParam} handleDelete={handleDelete} key={clothesParam._id}/>
-            </React.Fragment>
-
+            <InfoModal clothesParam={clothesParam} clothes={clothes} setClothes={setClothes} getClothes={getClothes}/>
           )
         })}
       </div> 
