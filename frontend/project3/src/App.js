@@ -19,7 +19,7 @@ const [showModal, setShowModal] = useState(false)
 const [collectionDisplay, setCollectionDisplay] = useState(false)
 const [selectValue, setSelectValue] = useState('')
 const [filter, setFilter] = useState([])
-const [infoDisplay, setInfoDisplay] = useState(false)
+// const [infoDisplay, setInfoDisplay] = useState(false)
 
 
 //=================================================
@@ -68,6 +68,14 @@ const handleNewItemFormSubmit = (event) => {
 //   setSelectValue(event.target.value)
 // }
 
+const handleDelete = (clothesParam) => {
+  axios.delete(`https://mighty-cliffs-82907.herokuapp.com/${clothesParam._id}`).then(() => {
+    axios.get('https://mighty-cliffs-82907.herokuapp.com/').then((response)=>{
+            setClothes(response.data)
+        })
+    })
+}
+
 //=================================================
 //               DISPLAY FUNCTIONS
 //=================================================
@@ -87,19 +95,12 @@ const hideCollection = () => {
   setCollectionDisplay(false)
 }
 
-const showInfo = () => {
-  setInfoDisplay(true)
-}
-
-const hideInfo = () => {
-  setInfoDisplay(false)
-}
 
 //=================================================
 //                  SORTING FUNCTIONS
 //=================================================
 const filterClothes = (setFilter) =>{
-  axios.get(`https://mighty-cliffs-82907.herokuapp.com/'${setFilter}`)
+  axios.get(`https://mighty-cliffs-82907.herokuapp.com/${setFilter}`)
   .then((res)=>{
     setClothes(res.data)
     console.log(res.data);
@@ -149,7 +150,7 @@ useEffect(() => {
       }
 
       {/* VIEW ENTIRE COLLECTION */}
-      {collectionDisplay === true ? 
+      {collectionDisplay ? 
         <div className='collection-heading'>
           <h2>Your Collection</h2>
           <select>
@@ -162,19 +163,18 @@ useEffect(() => {
                 )
               })}
           </select>
-        </div> : null}
-        
-      {collectionDisplay === true ?
-      <div className='container'>
+          <div className='container'>
         {clothes.map((clothesParam) => {
           return (
-            <div className='item-card'>
-              <img onClick={showInfo} src={clothesParam.imageURL}></img><br />
-              {infoDisplay === true ? <InfoModal hideInfo={hideInfo} clothesParam={clothesParam}/> : null}
-            </div>
+            <React.Fragment key ={clothesParam._id}>
+            <InfoModal clothesParam={clothesParam} handleDelete={handleDelete} key={clothesParam._id}/>
+            </React.Fragment>
+
           )
         })}
-      </div> : null }
+      </div> 
+        </div> : null}
+        
 
       {/* SUGGESTED OUTFIT */}
       <div>
