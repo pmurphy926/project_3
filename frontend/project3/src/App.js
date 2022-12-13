@@ -165,7 +165,7 @@ useEffect(() => {
           <div className='container'>
         {clothes.map((clothesParam) => {
           return (
-            <InfoModal clothesParam={clothesParam} />
+            <InfoModal clothesParam={clothesParam} clothes={clothes} setClothes={setClothes}/>
           )
         })}
       </div> 
