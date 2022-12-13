@@ -159,7 +159,7 @@ useEffect(() => {
 
           {filter.map((type) => {
                 return (
-                  <button onClick={() => {filterClothes(type)}}>{type}</button>
+                  <button className='sort-button' onClick={() => {filterClothes(type)}}>{type}</button>
                   )
                 })}
 
@@ -179,7 +179,7 @@ useEffect(() => {
             </select>
           </form> */}
 
-          
+
           <div className='container'>
         {clothes.map((clothesParam) => {
           return (
