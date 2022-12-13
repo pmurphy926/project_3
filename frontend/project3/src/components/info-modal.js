@@ -18,7 +18,7 @@ const InfoModal = (props) => {
       
       {infoDisplay ? //infoDisplay is truthy, so this should be saying if infoDisplay is true
       <div>
-          <DisplayInfo clothesParam={props.clothesParam} infoDisplay={infoDisplay} setInfoDisplay={setInfoDisplay} clothes={props.clothes} setClothes={props.setClothes}/> 
+          <DisplayInfo getClothes={props.getClothes} clothesParam={props.clothesParam} infoDisplay={infoDisplay} setInfoDisplay={setInfoDisplay} clothes={props.clothes} setClothes={props.setClothes}/> 
       </div> :null}
       
     </div>

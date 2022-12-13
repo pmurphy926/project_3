@@ -79,27 +79,26 @@ const hideFormDisplay = () => {
   setFormDisplay(false)
 }
 
-const showCollection = () => {
-  setCollectionDisplay(true)
+const toggleCollection = () => {
+  setCollectionDisplay(!collectionDisplay)
 }
 
-const hideCollection = () => {
-  setCollectionDisplay(false)
+// const hideCollection = () => {
+//   setCollectionDisplay(false)
+// }
+
+const getClothes = () => {
+  axios
+      .get('https://mighty-cliffs-82907.herokuapp.com/')
+      .then((response => {
+        setClothes(response.data)}))
 }
-
-// const showInfo = () => {
-//   setInfoDisplay(true)
-// }
-
-// const hideInfo = () => {
-//   setInfoDisplay(false)
-// }
 
 //=================================================
 //                  SORTING FUNCTIONS
 //=================================================
 const filterClothes = (setFilter) =>{
-  axios.get(`https://mighty-cliffs-82907.herokuapp.com/'${setFilter}`)
+  axios.get(`https://mighty-cliffs-82907.herokuapp.com/${setFilter}`)
   .then((res)=>{
     setClothes(res.data)
     console.log(res.data);
@@ -110,8 +109,7 @@ const filterClothes = (setFilter) =>{
 //                   USE EFFECT
 //=================================================
 useEffect(() => {
-  axios.get('https://mighty-cliffs-82907.herokuapp.com/').then((response => {
-    setClothes(response.data)}))
+  getClothes()
 }, [])
 
 
@@ -124,13 +122,13 @@ useEffect(() => {
       <h1>Wardrobe Manager</h1>
     </header>
       <div className='buttons-div'>
-        <button onClick={showCollection}>View Collection</button>
+        <button onClick={toggleCollection}>View Collection</button>
         <button>Suggest Outfit</button>
         <button onClick={showFormDisplay}>Add Item</button>
       </div>
 
       {/* ADD ITEM FORM */}
-      {formDisplay === true ? 
+      {formDisplay ? 
       <div className='form-modal'>
         <div className='form-modal-box'>
           <h3>Add an Item to Your Wardrobe:</h3>
@@ -165,7 +163,7 @@ useEffect(() => {
           <div className='container'>
         {clothes.map((clothesParam) => {
           return (
-            <InfoModal clothesParam={clothesParam} clothes={clothes} setClothes={setClothes}/>
+            <InfoModal clothesParam={clothesParam} clothes={clothes} setClothes={setClothes} getClothes={getClothes}/>
           )
         })}
       </div> 
