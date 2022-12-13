@@ -178,6 +178,8 @@ useEffect(() => {
                 })}
             </select>
           </form> */}
+
+          
           <div className='container'>
         {clothes.map((clothesParam) => {
           return (
