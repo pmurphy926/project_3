@@ -88,3 +88,7 @@ button, select {
 select {
   margin-bottom: 10px;
 }
+
+.sort-button {
+  margin-bottom: 10px;
+}
