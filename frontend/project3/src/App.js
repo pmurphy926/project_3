@@ -258,11 +258,9 @@ useEffect(() => {
       <h1>Wardrobe Manager</h1>
     </header>
       <div className='buttons-div'>
-        <button onClick={toggleCollection}>View Collection</button>
-
-        <button onClick={suggestOutfitDisplay}>Suggest Outfit</button>
-
-        <button onClick={showFormDisplay}>Add Item</button>
+        <button className='header-buttons' onClick={toggleCollection}>View Collection</button>
+        <button className='header-buttons' onClick={suggestOutfitDisplay}>Suggest Outfit</button>
+        <button className='header-buttons' onClick={showFormDisplay}>Add Item</button>
       </div>
 
       {/* ADD ITEM FORM */}
@@ -277,8 +275,8 @@ useEffect(() => {
               <input type="text" placeholder='Color' onChange={handleNewColorChange}/><br/>
               <input type="text" placeholder='Image' onChange={handleNewImageChange}/><br/>
               {/* Clean: <input type="checkbox" onChange={handleNewReservedForLaundryChange}/><br/> */}
-              <input className='sort-button' type="submit" value="Add Item"/>
-              <button onClick={hideFormDisplay}>Close Form</button>
+              <input className='form-button' type="submit" value="Add Item"/>
+              <button className='form-button' onClick={hideFormDisplay}>Close Form</button>
             </form>
           </div>
       </div> : null
@@ -290,12 +288,14 @@ useEffect(() => {
           <h2>Your Collection</h2>
 
           {/* SORT BUTTONS */}
-          {filter.map((type) => {
-            return (
-              <button className='sort-button' onClick={() => {filterClothes(type)}}>{type}</button>
-              )
-            })}
-
+          <div className='sort-button-div'>
+            {filter.map((type) => {
+              return (
+                <button className='sort-button' onClick={() => {filterClothes(type)}}>{type}</button>
+                )
+              })}
+              <button className='sort-button'>full collection</button>
+            </div>
           {/* SORT DROPDOWN */}
           {/* <form action="https://mighty-cliffs-82907.herokuapp.com">
             <select>
