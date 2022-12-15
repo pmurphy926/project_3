@@ -242,7 +242,7 @@ useEffect(() => {
   getHats()
   getFootwear()
   getAccessories()
-}, [])
+
 
   suggestOutfit()
 
@@ -364,17 +364,6 @@ useEffect(() => {
         </Carousel>
         </div>
         }
-        
-        
-
-            {clothes.map((clothesParam) => {
-              return (
-
-                <InfoModal clothesParam={clothesParam} clothes={clothes} setClothes={setClothes} getClothes={getClothes}/>
-              )
-            })}
-        </div> 
-      </div> : null}
     
 
 
