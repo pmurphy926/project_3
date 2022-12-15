@@ -1,3 +1,8 @@
+@font-face {
+  font-family: header;
+  src: url(../public/AquireLight-YzE0o.otf);
+}
+
 main {
   width: 100%;
 }
@@ -16,7 +21,9 @@ img {
   cursor: pointer;
 }
 
-
+h1 {
+  font-family: header;
+}
 
 .buttons-div {
   text-align: center;
