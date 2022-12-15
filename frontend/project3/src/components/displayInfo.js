@@ -6,8 +6,10 @@ import axios from 'axios'
 const DisplayInfo = (props) => {
 
   const [edit, setEdit] = useState(false)
+
   const [clothes, setClothes] = useState([])
   const [infoDisplay, setInfoDisplay] = useState(false)
+
 
   const toggleEdit = () => {
     setEdit(!edit)
@@ -18,6 +20,7 @@ const DisplayInfo = (props) => {
   }
 
 
+
   const handleDelete = (clothes) => {
     axios.delete(`https://mighty-cliffs-82907.herokuapp.com/${clothes._id}`)
     .then(()=> {
@@ -26,6 +29,7 @@ const DisplayInfo = (props) => {
       props.setInfoDisplay(false)
     })
   }
+
 
   return (
     <main>
@@ -39,6 +43,7 @@ const DisplayInfo = (props) => {
         : //if not, show the modal of the item description
         <div className='clothes-modal'>
           <div className='clothes-modal-box'>
+
             <button className='modal-button' onClick={hideInfo}>Close</button>
             <button className='modal-button' onClick={() => {handleDelete (props.clothesParam)}}>Delete Item</button><br/>
             <img className='clothes-modal-img' src={props.clothesParam.imageURL} alt="" />
@@ -47,6 +52,7 @@ const DisplayInfo = (props) => {
             <p><span>Color: </span>{props.clothesParam.color}</p>
             <p><span>Size: </span>{props.clothesParam.size}</p>
             <button className='modal-button' onClick={() => [toggleEdit()]}>Edit Info</button>
+            <button onClick={() => [toggleEdit()]}>Edit Info</button>
           </div>
         </div>}
     </main>
