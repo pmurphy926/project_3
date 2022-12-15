@@ -52,7 +52,6 @@ const DisplayInfo = (props) => {
             <p><span>Color: </span>{props.clothesParam.color}</p>
             <p><span>Size: </span>{props.clothesParam.size}</p>
             <button className='modal-button' onClick={() => [toggleEdit()]}>Edit Info</button>
-            <button onClick={() => [toggleEdit()]}>Edit Info</button>
           </div>
         </div>}
     </main>
