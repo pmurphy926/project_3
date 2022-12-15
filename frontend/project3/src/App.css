@@ -4,11 +4,6 @@
 }
 
 @font-face {
-  font-family: button;
-  src: url(../public/MinomuThin-0WVXv.otf);
-}
-
-@font-face {
   font-family: subheading;
   src: url(../public/SalmaproMedium-0Wooo.otf);
 }
@@ -134,7 +129,6 @@ select {
 
 .sort-button {
   margin-bottom: 10px;
-  font-family: sort-button;
 }
 
 .suggestion {
@@ -173,6 +167,7 @@ select {
   width: 105px;
   margin: 0 2px 2px 2px;
   border-radius: 15px;
+  border: 1px solid transparent;
 }
 
 .edit-form :nth-child(9){
@@ -192,5 +187,5 @@ border: 2px solid black;
 }
 
 button {
-  font-family: button;
+  font-family: sort-button;
 }
