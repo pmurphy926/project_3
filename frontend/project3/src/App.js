@@ -282,7 +282,7 @@ const App = () => {
               <input type="text" placeholder='Brand' onChange={handleNewBrandChange} /><br />
               <input type="text" placeholder='Size' onChange={handleNewSizeChange} /><br />
               <input type="text" placeholder='Color' onChange={handleNewColorChange} /><br />
-              <input type="text" placeholder='Image' onChange={handleNewImageChange} /><br />
+              <input type="text" placeholder='Image URL' onChange={handleNewImageChange} /><br /><br />
               {/* Clean: <input type="checkbox" onChange={handleNewReservedForLaundryChange}/><br/> */}
               <input className='form-button' type="submit" value="Add Item" />
               <button className='form-button' onClick={hideFormDisplay}>Close Form</button>
