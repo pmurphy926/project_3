@@ -291,16 +291,6 @@ useEffect(() => {
         </div>
         }
         
-
-        {/* carousel */}
-       
-            {/* <Carousel showThumbs={false} width='80%' autoPlay={true} infiniteLoop={true}  transitionTime={2500} showStatus={false} showIndicators={false}>
-            {clothes.map((clothesParam) => {
-          return (
-              <img src={clothesParam.imageURL} height="500vw" />
-              )
-        })}
-            </Carousel> */}
         
 
       {/* SUGGESTED OUTFIT */}
