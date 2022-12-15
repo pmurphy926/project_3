@@ -48,9 +48,10 @@ img {
 	bottom: 0;
   left: 0;
 	height: 100%;
-	width: 100%;
+  width: 100%;
 	z-index: 1;
 	overflow: auto;
+  text-align: center;
 }
 
 .clothes-modal-box {
@@ -73,8 +74,30 @@ img {
 
 .clothes-modal-img {
   width: 50%;
+  cursor:auto;
+
 }
 
 .close-modal {
   margin-bottom: 10px;
+}
+
+button, select {
+  cursor: pointer;
+}
+
+select {
+  margin-bottom: 10px;
+}
+
+.sort-button {
+  margin-bottom: 10px;
+}
+
+.suggestion {
+  text-align: center;
+}
+
+.suggest-image {
+  width: 25%;
 }
