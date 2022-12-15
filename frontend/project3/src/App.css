@@ -75,6 +75,7 @@ img {
 .clothes-modal-img {
   width: 50%;
   cursor:auto;
+
 }
 
 .close-modal {
@@ -91,4 +92,12 @@ select {
 
 .sort-button {
   margin-bottom: 10px;
+}
+
+.suggestion {
+  text-align: center;
+}
+
+.suggest-image {
+  width: 25%;
 }
