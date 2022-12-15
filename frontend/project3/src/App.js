@@ -19,6 +19,7 @@ const [showModal, setShowModal] = useState(false)
 const [collectionDisplay, setCollectionDisplay] = useState(false)
 const [selectValue, setSelectValue] = useState('')
 const [filter, setFilter] = useState([])
+
 const [suggestDisplay, setSuggestDisplay] = useState(false)
 // const [infoDisplay, setInfoDisplay] = useState(false)
 const [randomJacket, setRandomJacket] = useState([])
@@ -29,6 +30,7 @@ const [randomPants, setRandomPants] = useState([])
 const [randomPantsIndex, setRandomPantsIndex] = useState(0)
 const [randomShoes, setRandomShoes] = useState([])
 const [randomShoesIndex, setRandomShoesIndex] = useState(0)
+
 
 
 //=================================================
@@ -90,12 +92,15 @@ const hideFormDisplay = () => {
 
 const toggleCollection = () => {
   setCollectionDisplay(!collectionDisplay)
+
   setSuggestDisplay(false)
+
 }
 
 // const hideCollection = () => {
 //   setCollectionDisplay(false)
 // }
+
 
 const getClothes = () => {
   axios
@@ -107,13 +112,16 @@ const getClothes = () => {
 const filterOptions = () => {
   axios.get('https://mighty-cliffs-82907.herokuapp.com/filter').then((res)=>{
     setFilter(res.data)})
+
 }
 
 //=================================================
 //                  SORTING FUNCTIONS
 //=================================================
 const filterClothes = (setFilter) =>{
+
   axios.get(`https://mighty-cliffs-82907.herokuapp.com/filter/${setFilter}`)
+
   .then((res)=>{
     setClothes(res.data)
   })
@@ -174,8 +182,10 @@ const suggestOutfitDisplay = () => {
 //=================================================
 useEffect(() => {
   getClothes()
+
   filterOptions()
   suggestOutfit()
+
 }, [])
 
 //=================================================
@@ -188,7 +198,9 @@ useEffect(() => {
     </header>
       <div className='buttons-div'>
         <button onClick={toggleCollection}>View Collection</button>
+
         <button onClick={suggestOutfitDisplay}>Suggest Outfit</button>
+
         <button onClick={showFormDisplay}>Add Item</button>
       </div>
 
@@ -240,12 +252,15 @@ useEffect(() => {
           <div className='container'>
             {clothes.map((clothesParam) => {
               return (
+
                 <InfoModal clothesParam={clothesParam} clothes={clothes} setClothes={setClothes} getClothes={getClothes}/>
               )
             })}
         </div> 
       </div> : null}
     
+
+
       {/* SUGGESTED OUTFIT */}
       {suggestDisplay === true ? 
       <div className='suggestion'>
