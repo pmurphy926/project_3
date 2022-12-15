@@ -3,6 +3,14 @@
   src: url(../public/AquireLight-YzE0o.otf);
 }
 
+a {
+  text-decoration: none;
+  color: black;
+}
+a:hover {
+  color: blue;
+}
+
 main {
   width: 100%;
 }

@@ -264,7 +264,7 @@ const App = () => {
   return (
     <main>
       <header>
-        <h1>Wardrobe</h1>
+        <a href='window.loaction.reload()'><h1>Wardrobe</h1></a>
       </header>
       <div className='buttons-div'>
         <button className='header-buttons' onClick={toggleCollection}>View Collection</button>
