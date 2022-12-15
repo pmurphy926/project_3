@@ -303,7 +303,7 @@ const App = () => {
                 <button className='sort-button' onClick={() => { filterClothes(type) }}>{type}</button>
               )
             })}
-            <button className='sort-button'>full collection</button>
+            <button className='sort-button' onClick={()=> {getClothes()}}>full collection</button>
           </div>
           {/* SORT DROPDOWN */}
           {/* <form action="https://mighty-cliffs-82907.herokuapp.com">
