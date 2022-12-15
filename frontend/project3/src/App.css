@@ -7,6 +7,7 @@ a {
   text-decoration: none;
   color: black;
 }
+
 a:hover {
   color: blue;
 }
@@ -32,6 +33,7 @@ img {
 h1 {
   font-family: header;
   font-size: 1.5em;
+  margin-left: 5px;
 }
 
 .buttons-div {
