@@ -3,6 +3,21 @@
   src: url(../public/AquireLight-YzE0o.otf);
 }
 
+@font-face {
+  font-family: button;
+  src: url(../public/MinomuThin-0WVXv.otf);
+}
+
+@font-face {
+  font-family: subheading;
+  src: url(../public/SalmaproMedium-0Wooo.otf);
+}
+
+@font-face {
+  font-family: sort-button;
+  src: url(../public/MusticaproSemibold-2OG5o.otf);
+}
+
 a {
   text-decoration: none;
   color: black;
@@ -12,8 +27,10 @@ a:hover {
   color: blue;
 }
 
-main {
+main, body{
   width: 100%;
+  margin: 0;
+  background-color: rgb(226, 226, 226);
 }
 
 .container {
@@ -34,6 +51,10 @@ h1 {
   font-family: header;
   font-size: 1.5em;
   margin-left: 5px;
+}
+
+h2, h3 {
+  font-family: subheading;
 }
 
 .buttons-div {
@@ -113,6 +134,7 @@ select {
 
 .sort-button {
   margin-bottom: 10px;
+  font-family: sort-button;
 }
 
 .suggestion {
@@ -129,6 +151,7 @@ select {
   margin: 2px;
   width: 125px;
   border-radius: 15px;
+  border: 1px solid transparent;
 }
 
 .sort-button {
@@ -141,13 +164,15 @@ select {
   margin: 2px 2px 10px 2px;
   border-radius: 15px;
   width: 105px;
+  border: 1px solid transparent;
 }
 
-.edit-form-button {
+.edit-form-button, .add-form-button {
   padding: .5%;
   border-radius: 15px;
   width: 105px;
   margin: 0 2px 2px 2px;
+  border-radius: 15px;
 }
 
 .edit-form :nth-child(9){
@@ -164,4 +189,8 @@ select {
 
 .edit-form-input:focus {
 border: 2px solid black;
+}
+
+button {
+  font-family: button;
 }
