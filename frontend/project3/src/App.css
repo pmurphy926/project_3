@@ -141,6 +141,6 @@ select {
   background-color: transparent;
 }
 
-.edit-form-inpu:focus {
+.edit-form-input:focus {
 border: 2px solid black;
 }
