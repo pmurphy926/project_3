@@ -376,10 +376,10 @@ const App = () => {
       }
 
       {toggleOn? 
-      <Carousel showThumbs={false} width='80%' autoPlay={true} infiniteLoop={true} transitionTime={2500} showStatus={false} showIndicators={false}>
+      <Carousel showThumbs={false} width='100%' autoPlay={true} infiniteLoop={true} transitionTime={2500} showStatus={false} showIndicators={false}>
       {clothes.map((clothesParam) => {
         return (
-          <img src={clothesParam.imageURL} height="500vw" />
+          <img src={clothesParam.imageURL} />
         )
       })}
     </Carousel> : null}
