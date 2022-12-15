@@ -39,14 +39,14 @@ const DisplayInfo = (props) => {
         : //if not, show the modal of the item description
         <div className='clothes-modal'>
           <div className='clothes-modal-box'>
-            <button className='close-modal' onClick={hideInfo}>Close</button>
-            <button onClick={() => {handleDelete (props.clothesParam)}}>Delete Item</button><br/>
+            <button className='modal-button' onClick={hideInfo}>Close</button>
+            <button className='modal-button' onClick={() => {handleDelete (props.clothesParam)}}>Delete Item</button><br/>
             <img className='clothes-modal-img' src={props.clothesParam.imageURL} alt="" />
             <p><span>Type: </span>{props.clothesParam.type}</p>
             <p><span>Brand: </span>{props.clothesParam.brand}</p>
             <p><span>Color: </span>{props.clothesParam.color}</p>
             <p><span>Size: </span>{props.clothesParam.size}</p>
-            <button onClick={() => [toggleEdit()]}>Edit Info</button>
+            <button className='modal-button' onClick={() => [toggleEdit()]}>Edit Info</button>
           </div>
         </div>}
     </main>

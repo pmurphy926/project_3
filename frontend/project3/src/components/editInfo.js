@@ -46,19 +46,18 @@ const EditInfo = (props) => {
   }
 
   return (
-    <main>
+    <div className='edit-form'>
       <form onSubmit={edit}>
-        <input type="text" placeholder={props.clothesParam.type} onChange={handleTypeChange} /><br />
-        <input type="text" placeholder={props.clothesParam.brand} onChange={handleBrandChange} /><br />
-        <input type="text" placeholder={props.clothesParam.size} onChange={handleSizeChange} /><br />
-        <input type="text" placeholder={props.clothesParam.color} onChange={handleColorChange} /><br />
-        <input type="text" placeholder={props.clothesParam.imageURL} onChange={handleImageChange} /><br />
-        {/* Clean: <input type="checkbox" onChange={handleReservedForLaundryChange}/><br/> */}
-        <input className='sort-button' type="submit" value="Update Item" />
+        <input className='edit-form-input' type="text" placeholder={props.clothesParam.type} onChange={handleTypeChange} /><br />
+        <input className='edit-form-input' type="text" placeholder={props.clothesParam.brand} onChange={handleBrandChange} /><br />
+        <input className='edit-form-input' type="text" placeholder={props.clothesParam.size} onChange={handleSizeChange} /><br />
+        <input className='edit-form-input' type="text" placeholder={props.clothesParam.color} onChange={handleColorChange} /><br />
+        <input className='edit-form-input' type="text" placeholder={props.clothesParam.imageURL} onChange={handleImageChange} /><br />
+        <input className='edit-form-button' type="submit" value="Update Item" />
         {/* <button onClick={hideFormDisplay}>Close Form</button> */}
       </form>
-      <button onClick={() => { props.toggleEdit() }}>Cancel</button>
-    </main>
+      <button className='edit-form-button' onClick={() => { props.toggleEdit() }}>Cancel</button>
+    </div>
   )
 
 
