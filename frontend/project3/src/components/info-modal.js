@@ -19,7 +19,6 @@ const InfoModal = (props) => {
       <div>
         <DisplayInfo handleDelete={props.handleDelete} getClothes={props.getClothes} clothesParam={props.clothesParam} infoDisplay={infoDisplay} setInfoDisplay={setInfoDisplay} clothes={props.clothes} setClothes={props.setClothes}/>
       </div> : null}
-      
     </div>
   )
 }

@@ -3,6 +3,9 @@ import axios from 'axios'
 import './App.css';
 import InfoModal from './components/info-modal';
 
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
+
 const App = () => {
 
 //=================================================
@@ -20,6 +23,13 @@ const [collectionDisplay, setCollectionDisplay] = useState(false)
 const [selectValue, setSelectValue] = useState('')
 const [filter, setFilter] = useState([])
 // const [infoDisplay, setInfoDisplay] = useState(false)
+
+const [shirt, setShirt] = useState([])
+const [pants, setPants] = useState([])
+const [outerwear, setOuterwear] = useState([])
+const [hats, setHats] = useState([])
+const [footwear, setFootwear] = useState([])
+const [accessories, setAccessories] = useState([])
 
 
 //=================================================
@@ -94,10 +104,51 @@ const getClothes = () => {
         setClothes(response.data)}))
 }
 
+const getShirts = () => {
+  axios
+      .get('https://mighty-cliffs-82907.herokuapp.com/filter/shirt')
+      .then((response => {
+        setShirt(response.data)}))
+}
+
+const getPants = () => {
+  axios
+      .get('https://mighty-cliffs-82907.herokuapp.com/filter/pants')
+      .then((response => {
+        setPants(response.data)}))
+}
+const getOuterwear = () => {
+  axios
+      .get('https://mighty-cliffs-82907.herokuapp.com/filter/outerwear')
+      .then((response => {
+        setOuterwear(response.data)}))
+}
+
+const getHats = () => {
+  axios
+      .get('https://mighty-cliffs-82907.herokuapp.com/filter/hats')
+      .then((response => {
+        setHats(response.data)}))
+}
+const getFootwear = () => {
+  axios
+      .get('https://mighty-cliffs-82907.herokuapp.com/filter/footwear')
+      .then((response => {
+        setFootwear(response.data)}))
+}
+const getAccessories = () => {
+  axios
+      .get('https://mighty-cliffs-82907.herokuapp.com/filter/accessories')
+      .then((response => {
+        setAccessories(response.data)}))
+}
+
 const filterOptions = () => {
   axios.get('https://mighty-cliffs-82907.herokuapp.com/filter').then((res)=>{
     setFilter(res.data)})
 }
+
+
 
 //=================================================
 //                  SORTING FUNCTIONS
@@ -116,6 +167,12 @@ const filterClothes = (setFilter) =>{
 useEffect(() => {
   getClothes()
   filterOptions()
+  getShirts()
+  getPants()
+  getOuterwear()
+  getHats()
+  getFootwear()
+  getAccessories()
 }, [])
 
 
@@ -187,7 +244,63 @@ useEffect(() => {
           )
         })}
       </div> 
-        </div> : null}
+        </div> : 
+        <div>
+        <Carousel showThumbs={false} width='80%' autoPlay={true} infiniteLoop={true}  transitionTime={2500} showStatus={false} showIndicators={false}>
+        {shirt.map((clothesParam) => {
+      return (
+          <img src={clothesParam.imageURL} height="500vw" />
+          )
+    })}
+        </Carousel>
+        <Carousel showThumbs={false} width='80%' autoPlay={true} infiniteLoop={true}  transitionTime={2500} showStatus={false} showIndicators={false}>
+        {pants.map((clothesParam) => {
+      return (
+          <img src={clothesParam.imageURL} height="500vw" />
+          )
+    })}
+        </Carousel>
+        <Carousel showThumbs={false} width='80%' autoPlay={true} infiniteLoop={true}  transitionTime={2500} showStatus={false} showIndicators={false}>
+        {outerwear.map((clothesParam) => {
+      return (
+          <img src={clothesParam.imageURL} height="500vw" />
+          )
+    })}
+        </Carousel>
+        <Carousel showThumbs={false} width='80%' autoPlay={true} infiniteLoop={true}  transitionTime={2500} showStatus={false} showIndicators={false}>
+        {hats.map((clothesParam) => {
+      return (
+          <img src={clothesParam.imageURL} height="500vw" />
+          )
+    })}
+        </Carousel>
+        <Carousel showThumbs={false} width='80%' autoPlay={true} infiniteLoop={true}  transitionTime={2500} showStatus={false} showIndicators={false}>
+        {footwear.map((clothesParam) => {
+      return (
+          <img src={clothesParam.imageURL} height="500vw" />
+          )
+    })}
+        </Carousel>
+        <Carousel showThumbs={false} width='80%' autoPlay={true} infiniteLoop={true}  transitionTime={2500} showStatus={false} showIndicators={false}>
+        {accessories.map((clothesParam) => {
+      return (
+          <img src={clothesParam.imageURL} height="500vw" />
+          )
+    })}
+        </Carousel>
+        </div>
+        }
+        
+
+        {/* carousel */}
+       
+            {/* <Carousel showThumbs={false} width='80%' autoPlay={true} infiniteLoop={true}  transitionTime={2500} showStatus={false} showIndicators={false}>
+            {clothes.map((clothesParam) => {
+          return (
+              <img src={clothesParam.imageURL} height="500vw" />
+              )
+        })}
+            </Carousel> */}
         
 
       {/* SUGGESTED OUTFIT */}
