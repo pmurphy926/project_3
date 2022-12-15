@@ -1,3 +1,8 @@
+@font-face {
+  font-family: header;
+  src: url(../public/AquireLight-YzE0o.otf);
+}
+
 main {
   width: 100%;
 }
@@ -16,7 +21,10 @@ img {
   cursor: pointer;
 }
 
-
+h1 {
+  font-family: header;
+  font-size: 1.5em;
+}
 
 .buttons-div {
   text-align: center;
@@ -77,7 +85,7 @@ img {
 }
 
 .clothes-modal-img {
-  width: 50%;
+  width: 90%;
   cursor:auto;
 
 }
@@ -106,7 +114,7 @@ select {
 .header-buttons {
   padding: 8px;
   margin: 2px;
-  width: 125px;
+  width: 115px;
   border-radius: 15px;
 }
 
