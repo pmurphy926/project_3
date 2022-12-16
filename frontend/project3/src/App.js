@@ -278,11 +278,11 @@ const App = () => {
           <div className='form-modal-box'>
             <h3>Add an Item to Your Wardrobe:</h3>
             <form onSubmit={handleNewItemFormSubmit}>
-              <input type="text" placeholder='Type' onChange={handleNewTypeChange} /><br />
-              <input type="text" placeholder='Brand' onChange={handleNewBrandChange} /><br />
-              <input type="text" placeholder='Size' onChange={handleNewSizeChange} /><br />
-              <input type="text" placeholder='Color' onChange={handleNewColorChange} /><br />
-              <input type="text" placeholder='Image URL' onChange={handleNewImageChange} /><br /><br />
+              <input type="text" placeholder='Type' onChange={handleNewTypeChange} required/><br />
+              <input type="text" placeholder='Brand' onChange={handleNewBrandChange} required/><br />
+              <input type="text" placeholder='Size' onChange={handleNewSizeChange} required/><br />
+              <input type="text" placeholder='Color' onChange={handleNewColorChange} required/><br />
+              <input type="text" placeholder='Image URL' onChange={handleNewImageChange} required/><br /><br />
               {/* Clean: <input type="checkbox" onChange={handleNewReservedForLaundryChange}/><br/> */}
               <input className='add-form-button' type="submit" value="Add Item" />
               <button className='add-form-button' onClick={hideFormDisplay}>Close Form</button>
