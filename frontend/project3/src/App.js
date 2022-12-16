@@ -85,6 +85,7 @@ const App = () => {
       })
     })
     event.target.reset()
+    hideFormDisplay()
   }
 
   // const handleSelectValue = (event) => {
