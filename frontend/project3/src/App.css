@@ -1,17 +1,60 @@
-main {
+@font-face {
+  font-family: header;
+  src: url(../public/AquireLight-YzE0o.otf);
+}
+
+@font-face {
+  font-family: button;
+  src: url(../public/MinomuThin-0WVXv.otf);
+}
+
+@font-face {
+  font-family: subheading;
+  src: url(../public/SalmaproMedium-0Wooo.otf);
+}
+
+@font-face {
+  font-family: sort-button;
+  src: url(../public/MusticaproSemibold-2OG5o.otf);
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  color: blue;
+}
+
+main, body{
   width: 100%;
+  margin: 0;
+  background-color: rgb(226, 226, 226);
 }
 
 .container {
   display: grid;
   grid-template-columns: 50% 50%;
-  gap: 1%;
+  row-gap: .1%;
+  column-gap: .1%;
   text-align: center;
+  align-items: stretch;
 }
 
 img {
-  width: 80%;
+  width: 95%;
   cursor: pointer;
+}
+
+h1 {
+  font-family: header;
+  font-size: 1.5em;
+  margin-left: 5px;
+}
+
+h2, h3 {
+  font-family: subheading;
 }
 
 .buttons-div {
@@ -29,16 +72,19 @@ img {
 	width: 100%;
 	z-index: 1;
 	overflow: auto;
+  text-align: center;
 }
 
 .form-modal-box {
   text-align: center;
   background-color: white;
-	height: 250px;
-	width: 450px;
-	margin: 150px auto;
+	width: 90%;
+  height: 250px;
+	margin: 100px auto;
 	box-shadow: 0 2px 2px rgba(0,0,0,0.2);
   padding: 1%;
+  justify-content: center;
+  border-radius: 25px;
 }
 
 .clothes-modal {
@@ -73,12 +119,9 @@ img {
 }
 
 .clothes-modal-img {
-  width: 50%;
+  width: 90%;
   cursor:auto;
-}
 
-.close-modal {
-  margin-bottom: 10px;
 }
 
 button, select {
@@ -87,4 +130,67 @@ button, select {
 
 select {
   margin-bottom: 10px;
+}
+
+.sort-button {
+  margin-bottom: 10px;
+  font-family: sort-button;
+}
+
+.suggestion {
+  text-align: center;
+}
+
+.suggest-image {
+  width: 40%;
+  cursor: auto;
+}
+
+.header-buttons {
+  padding: 8px;
+  margin: 2px;
+  width: 125px;
+  border-radius: 15px;
+  border: 1px solid transparent;
+}
+
+.sort-button {
+  border: 1px solid transparent;
+  background-color: transparent;
+}
+
+.modal-button {
+  padding: .5%;
+  margin: 2px 2px 10px 2px;
+  border-radius: 15px;
+  width: 105px;
+  border: 1px solid transparent;
+}
+
+.edit-form-button, .add-form-button {
+  padding: .5%;
+  border-radius: 15px;
+  width: 105px;
+  margin: 0 2px 2px 2px;
+  border-radius: 15px;
+}
+
+.edit-form :nth-child(9){
+  margin-bottom: 8px
+}
+
+.edit-form-input {
+  width: 45%;
+  padding: 1%;
+  margin-bottom: 2px;
+  border: 2px solid transparent;
+  background-color: transparent;
+}
+
+.edit-form-input:focus {
+border: 2px solid black;
+}
+
+button {
+  font-family: button;
 }

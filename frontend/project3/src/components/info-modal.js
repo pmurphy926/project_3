@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import DisplayInfo from './displayInfo'
 
 const InfoModal = (props) => {
   const [infoDisplay, setInfoDisplay] = useState(false)
@@ -7,27 +8,19 @@ const InfoModal = (props) => {
     setInfoDisplay(true)
   }
 
-  const hideInfo = () => {
-    setInfoDisplay(false)
-  }
+  // const hideInfo = () => {
+  //   setInfoDisplay(false)
+  // }
 
   return (
     <div className='item-card'>
       <img onClick={showInfo} src={props.clothesParam.imageURL}></img><br />
-      {infoDisplay ? 
-      <div className='clothes-modal'>
-        <div className='clothes-modal-box'>
-          <button>Edit Info</button>
-          <button onClick={() => {props.handleDelete (props.clothesParam)}}>Delete Item</button>
-          <button className='close-modal' onClick={hideInfo}>Close</button><br />
-          <img className='clothes-modal-img' src={props.clothesParam.imageURL} alt="" />
-          <p><span>Type: </span>{props.clothesParam.type}</p>
-          <p><span>Brand: </span>{props.clothesParam.brand}</p>
-          <p><span>Color: </span>{props.clothesParam.color}</p>
-          <p><span>Size: </span>{props.clothesParam.size}</p>
-        </div>
+
+      {infoDisplay ? //infoDisplay is truthy, so this should be saying if infoDisplay is true
+      <div>
+        <DisplayInfo handleDelete={props.handleDelete} getClothes={props.getClothes} clothesParam={props.clothesParam} infoDisplay={infoDisplay} setInfoDisplay={setInfoDisplay} clothes={props.clothes} setClothes={props.setClothes}/>
       </div> : null}
-      
+
     </div>
   )
 }
